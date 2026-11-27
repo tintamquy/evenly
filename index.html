@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Evenly — Simple Group Expense Splitter</title>
+  <meta name="description" content="Split group expenses without accounts, apps, or limits. Your data stays in the link." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="page">
+    <header class="header">
+      <div class="header-left">
+        <h1 class="site-title">Evenly</h1>
+        <p class="site-sub" data-i18n="subtitle">Split group bills without accounts or limits. Everything lives in the link.</p>
+      </div>
+      <div class="header-right">
+        <select id="currency-select" class="input-compact" aria-label="Currency">
+          <option value="VND">VND (₫)</option>
+          <option value="USD">USD ($)</option>
+          <option value="EUR">EUR (€)</option>
+          <option value="JPY">JPY (¥)</option>
+        </select>
+        <button id="lang-btn" class="btn-text" type="button">EN</button>
+      </div>
+    </header>
+
+    <section class="panel">
+      <div class="panel-row">
+        <label class="field-label" for="group-name" data-i18n="tripLabel">Group or trip</label>
+        <input id="group-name" class="input-plain" type="text" placeholder="Da Lat trip, Roommates, Lunch..." />
+      </div>
+      <div class="panel-row">
+        <span class="field-label" data-i18n="peopleLabel">People</span>
+        <div class="people-area">
+          <div id="people-list" class="people-list"></div>
+          <form id="add-person-form" class="inline-form">
+            <input id="person-input" class="input-plain" type="text" maxlength="28" required />
+            <button class="btn-outline" type="submit" data-i18n="addBtn">Add</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2 class="section-title" data-i18n="addExpenseTitle">Add an expense</h2>
+      <form id="expense-form" class="expense-form">
+        <input id="exp-desc" class="input-plain" type="text" maxlength="60" required />
+        <input id="exp-amount" class="input-plain num" type="number" min="0" step="any" required />
+        <select id="exp-payer" class="input-plain" required></select>
+        <button class="btn-solid" type="submit" data-i18n="saveExpenseBtn">Add</button>
+      </form>
+      <div class="split-row">
+        <span class="muted-small" data-i18n="splitAmong">Split equally among:</span>
+        <div id="split-checkboxes" class="split-checks"></div>
+      </div>
+    </section>
+
+    <div class="two-col">
+      <section class="panel">
+        <div class="panel-head">
+          <h2 class="section-title" data-i18n="expensesTitle">Expenses</h2>
+          <span id="total-spent" class="mono muted-small"></span>
+        </div>
+        <div id="expenses-list" class="list"></div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <h2 class="section-title" data-i18n="settleTitle">Who owes whom</h2>
+          <button id="copy-summary-btn" class="btn-text" type="button" data-i18n="copySummary">Copy summary</button>
+        </div>
+        <div id="settlements-list" class="list"></div>
+      </section>
+    </div>
+
+    <footer class="footer">
+      <div class="footer-actions">
+        <button id="copy-link-btn" class="btn-outline" type="button" data-i18n="copyLink">Copy shareable link</button>
+        <button id="reset-btn" class="btn-text danger-text" type="button" data-i18n="resetBtn">Start fresh</button>
+      </div>
+      <span id="status-msg" class="status-msg" aria-live="polite"></span>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
